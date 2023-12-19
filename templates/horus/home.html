@@ -16,6 +16,7 @@
           <div class="btn-toolbar mb-2 mb-md-0">
         </div>
         <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+        <img src="{{ chart_data }}" alt="Gráfico de Pizza"width="500" height="400">
         <hr>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -35,7 +36,7 @@
           data: {
             labels: [{% for month in range_month %} '{{month.month}}',{% endfor %}],
             datasets: [{
-              data: [{% for value in range_month %} {{ value.value_all }},{% endfor %}],
+              data: [{% for value in range_month %} {{ value.value }},{% endfor %}],
               lineTension: 0,
               backgroundColor: 'transparent',
               borderColor: '#007bff',
