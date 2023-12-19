@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
 from .models import ValueMonthTotal, ValueYearTotal
 from .matplot import generate_bar
+from django.contrib.auth import authenticate
+from django.contrib import messages
+from django.contrib import auth
 
 def home(request):
     range_month = ValueMonthTotal.objects.all()
@@ -45,4 +48,21 @@ def insert_value(request):
     return render(request, 'horus/values.html')
 
 def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Usuario não existe! Favor registre seu usuario.')
+            return redirect('user-login')
     return render(request, 'horus/user_login.html')
+
+def logout_user(request):
+    auth.logout(request)
+
+    return redirect('user-login')
