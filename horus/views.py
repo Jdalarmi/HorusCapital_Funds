@@ -43,3 +43,6 @@ def insert_value(request):
         data_year.save()
 
     return render(request, 'horus/values.html')
+
+def user_login(request):
+    return render(request, 'horus/user_login.html')
