@@ -1,9 +1,24 @@
 from django.shortcuts import render
 from datetime import datetime
 from .models import ValueMonthTotal, ValueYearTotal
+from .matplot import generate_bar
 
 def home(request):
-    return render(request, 'horus/home.html')
+    range_month = ValueMonthTotal.objects.all()
+    range_year = ValueYearTotal.objects.all()
+
+    categories = [obj.year for obj in range_year]
+    values = [obj.total for obj in range_year]
+
+    chart_data = generate_bar(categories, values)
+   
+    context ={
+        "range_month":range_month,
+        "range_year":range_year,
+        "chart_data":chart_data
+    }
+    
+    return render(request, 'horus/home.html', context)
 
 def insert_value(request):
     if request.method == 'POST':
