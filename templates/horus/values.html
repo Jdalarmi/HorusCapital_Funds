@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static "css/value.css" %}">
     <div class="container_values">
         <form method="post" action="">
-            {% csrf_token %}
+        {% csrf_token %}
             {% if messages %}
             <ul class="messages">
                 {% for message in messages %}

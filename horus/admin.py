@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import ValueYearTotal, ValueMonthTotal
 
-# Register your models here.
+admin.site.register(ValueMonthTotal)
+admin.site.register(ValueYearTotal)
+
