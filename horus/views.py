@@ -5,7 +5,9 @@ from .matplot import generate_bar
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='user-login')
 def home(request):
     range_month = ValueMonthTotal.objects.all()
     range_year = ValueYearTotal.objects.all()
@@ -23,6 +25,7 @@ def home(request):
     
     return render(request, 'horus/home.html', context)
 
+@login_required(login_url='user-login')
 def insert_value(request):
     if request.method == 'POST':
         data = request.POST.get("date")
@@ -44,6 +47,7 @@ def insert_value(request):
         if not created:
             data_year.total += value
         data_year.save()
+        return redirect('home')
 
     return render(request, 'horus/values.html')
 
