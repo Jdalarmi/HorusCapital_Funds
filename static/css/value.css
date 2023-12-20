@@ -31,3 +31,30 @@
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+.container_values {
+    margin: 20px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.data-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.messages-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.messages-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
