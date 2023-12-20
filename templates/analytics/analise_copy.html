@@ -1,0 +1,46 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static "css/analise.css" %}">
+<section class="main">
+    <div class="main-top">
+      <h1>Preencha as informações corretamente!</h1>
+      <hr>
+      <i class="fas fa-user-cog"></i>
+      <h1></h1>
+    </div>
+    <hr>
+    <div class="container_values">
+        <form method="post" action="">
+        {% csrf_token %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <br>
+            <br>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="value">Qual valor você vai alocar de inicio?</label>
+                    <input type="text" class="form-control" id="value" name="value">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="id_date">Defina valor do seu aporte mensal</label>
+                    <input type="text" class="form-control" id="id_date" name="date" required>
+                </div>
+                <br>
+                <div class="col-md-4 mb-3">
+                    <label for="value">Defina rentabilidade desejada ao mês [0.80% a 1.00%]</label>
+                    <input type="text" class="form-control" id="value" name="value">
+                </div>
+            </div>
+            <br>
+            <button class="button" type="submit">Gerar</button>
+        </form>
+    </div>
+    <br>
+    <br>
+{% endblock %}
