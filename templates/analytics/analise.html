@@ -47,31 +47,56 @@
     <br>
     <br>
     <div class="table-responsive">
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Total investido</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+          <tbody>
+          {% for value in data  %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>{{value.value_start}}</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+    </div>
+    <div class="table-responsive">
         <table class="table table-bordered table-dark">
           <thead>
             <tr>
               <th>Mês</th>
               <th>Patrimonio</th>
-              <th>Rentabilidade</th>
-              <th></th>
-              <th>Mes</th>
+              <th>Juros</th>
+              <th>Rent %</th>
               <th>Total investido</th>
               <th>Juros</th>
               <th>Total Acumulado</th>
             </tr>
           </thead>
-          <tbody>
-                <tr>
-                  <td>teste</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-          </tbody>
+          {% for data in data_juros  %}
+            <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>R$:{{data.total_investido | floatformat}}</td>
+                    <td>R$:{{data.juros | floatformat}}</td>
+                    <td>R$:{{data.total_acumulado | floatformat}}</td>
+                    <td></td>
+                  </tr>
+            </tbody>
+          {% endfor %}
         </table>
       </div>
 {% endblock %}
