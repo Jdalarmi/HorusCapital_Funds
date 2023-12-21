@@ -58,3 +58,20 @@
     border: 1px solid #ddd;
 }
 
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    color: #3498db;
+  }
+  
+
+  .button:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
