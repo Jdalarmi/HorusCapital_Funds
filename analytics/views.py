@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import JurosTable, TableFutureFees
+from django.shortcuts import render, redirect
+from .models import JurosTable, TableFutureFees, InsertValuesAporte
 from horus.models import ValueMonthTotal
 
 list_month = ['Janeiro', 'Fevereiro']
@@ -37,14 +37,17 @@ def analise(request):
     data = JurosTable.objects.all()
     lista_initial = []
     for value in data:
+        _value_initial = value.value_start
         lista_initial.append(value.value_start)
         lista_initial.append(value.value_month)
         lista_initial.append(value.value_rentability)
-
-    start = lista_initial[0]
-    aporte = lista_initial[1]
-    rentabilidade = lista_initial[2]
-    total_juros = 0
+    try:
+        start = lista_initial[0]
+        aporte = lista_initial[1]
+        rentabilidade = lista_initial[2]
+        total_juros = 0
+    except IndexError:
+        return redirect('analise-copy')
 
 
     if not TableFutureFees.objects.exists():
@@ -61,5 +64,12 @@ def analise(request):
             )
     data_juros = TableFutureFees.objects.all()
     juros_mensal = ValueMonthTotal.objects.all()
+
+
+    if request.method == 'POST':
+        value_aporte = float(request.POST.get('value_aporte').replace(",", "."))
+        value_juros =float(request.POST.get('value_juros').replace(",", "."))
+        
+    
 
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal})

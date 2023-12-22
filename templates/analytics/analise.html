@@ -26,18 +26,14 @@
             <br>
             <br>
             <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="value">Patrimonio Atual</label>
-                    <input type="text" class="form-control" id="value" name="value" >
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="id_date">Data do aporte</label>
-                    <input type="date" class="form-control" id="id_date" name="date" required>
-                </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="value">Valor do aporte</label>
+                    <input type="text" class="form-control" id="value" name="value_aporte">
+                  </div>
                 <br>
                 <div class="col-md-4 mb-3">
-                    <label for="value">Valor do Aporte</label>
-                    <input type="text" class="form-control" id="value" name="value">
+                    <label for="value">Juros recebido</label>
+                    <input type="text" class="form-control" id="value" name="value_juros">
                 </div>
             </div>
             <br>
@@ -63,31 +59,6 @@
                     <td></td>
                     <td></td>
                   </tr>
-            </tbody>
-        </table>
-      </div>
-
-      <div class="table-responsive">
-        <table class="table table-bordered table-dark">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th>Total investido</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-            <tbody>
-            {% for value in data  %}
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>{{value.value_start}}</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-            {% endfor %}
             </tbody>
         </table>
       </div>
