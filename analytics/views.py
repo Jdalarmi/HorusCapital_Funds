@@ -70,6 +70,7 @@ def analise(request):
         value_aporte = float(request.POST.get('value_aporte').replace(",", "."))
         value_juros =float(request.POST.get('value_juros').replace(",", "."))
         
-    
+        value_total = JurosTable.objects.get('value_start')
 
+        print(value_total)
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal})
