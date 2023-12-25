@@ -65,12 +65,15 @@ def analise(request):
     data_juros = TableFutureFees.objects.all()
     juros_mensal = ValueMonthTotal.objects.all()
 
-
+    valor_patrimonio = _value_initial
     if request.method == 'POST':
         value_aporte = float(request.POST.get('value_aporte').replace(",", "."))
         value_juros =float(request.POST.get('value_juros').replace(",", "."))
-        
-        value_total = JurosTable.objects.get('value_start')
 
-        print(value_total)
+        value_test += value_aporte
+        
+        valor_patrimonio += value_test
+        
+        print(valor_patrimonio)
+
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal})
