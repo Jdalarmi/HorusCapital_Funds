@@ -73,14 +73,12 @@ def analise(request):
         ultimo_aporte_obj = InsertValuesAporte.objects.order_by('-patrimonio_total').first()
 
     if ultimo_aporte_obj:
-        # Se existir um objeto, crie um novo objeto somando os valores
         novo_aporte_obj = InsertValuesAporte.objects.create(
             valor_patrimonio=ultimo_aporte_obj.valor_patrimonio + value_aporte,
             juros_recebido=value_juros,
             patrimonio_total=ultimo_aporte_obj.valor_patrimonio + value_aporte + value_juros
         )
     else:
-        # Se não existir um objeto, crie um novo registro com os valores fornecidos
         novo_aporte_obj = InsertValuesAporte.objects.create(
             valor_patrimonio=value_aporte,
             juros_recebido=value_juros,
