@@ -70,10 +70,11 @@ def analise(request):
         value_aporte = float(request.POST.get('value_aporte').replace(",", "."))
         value_juros =float(request.POST.get('value_juros').replace(",", "."))
 
-        value_test += value_aporte
+        InsertValuesAporte.objects.create(
+            valor_patrimonio = valor_patrimonio + value_aporte,
+            juros_recebido = value_juros,
+            patrimonio_total = valor_patrimonio + value_aporte + value_juros
+        )
         
-        valor_patrimonio += value_test
-        
-        print(valor_patrimonio)
 
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal})
