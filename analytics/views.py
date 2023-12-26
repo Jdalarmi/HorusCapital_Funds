@@ -70,11 +70,22 @@ def analise(request):
         value_aporte = float(request.POST.get('value_aporte').replace(",", "."))
         value_juros =float(request.POST.get('value_juros').replace(",", "."))
 
-        InsertValuesAporte.objects.create(
-            valor_patrimonio = valor_patrimonio + value_aporte,
-            juros_recebido = value_juros,
-            patrimonio_total = valor_patrimonio + value_aporte + value_juros
+        ultimo_aporte_obj = InsertValuesAporte.objects.order_by('-patrimonio_total').first()
+
+    if ultimo_aporte_obj:
+        # Se existir um objeto, crie um novo objeto somando os valores
+        novo_aporte_obj = InsertValuesAporte.objects.create(
+            valor_patrimonio=ultimo_aporte_obj.valor_patrimonio + value_aporte,
+            juros_recebido=value_juros,
+            patrimonio_total=ultimo_aporte_obj.valor_patrimonio + value_aporte + value_juros
         )
-        
+    else:
+        # Se não existir um objeto, crie um novo registro com os valores fornecidos
+        novo_aporte_obj = InsertValuesAporte.objects.create(
+            valor_patrimonio=value_aporte,
+            juros_recebido=value_juros,
+            patrimonio_total=value_aporte + value_juros
+        )
+            
 
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal})
