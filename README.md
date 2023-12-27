@@ -2,19 +2,19 @@
 
 # Horus|Capital - Funds é um projeto para gerenciar meus rendimentos de Fundos Imobilarios
 
-# Projeto Horus|Capital
+# Horus|Capital
 
 ## 📖  Descrição
 
-Este é um projeto que me possibilita gerenciar meus rendimentos de fundos imobiliarios de uma forma facil e dinamica, com acompanhamento mensal da meta e visuzalização da evolução dos rendimentos ao passar dos anos. 
+Este é um projeto que me possibilita gerenciar meus rendimentos de fundos imobiliários de uma forma fácil e dinâmica, com acompanhamento mensal da meta e visualização da evolução dos rendimentos ao longo dos anos.
 
 <br/>
 
 ## 🛠️ Funcionalidades
-1. Autenticação e permissão para acessar o aplicativo.(apenas super usuario por enquanto)
+1. Autenticação e permissão para acessar o aplicativo (apenas super usuário por enquanto).
 2. Cadastrar rendimentos do mês referente.
 3. Montar planejamento de investimento com dados que são inseridos nos campos com as descrições.
-4. Visualizar em graficos e dashboards a evolução dos rendiementos, e o  total recebido por ano.
+4. Visualizar em gráficos e dashboards a evolução dos rendimentos, e o total recebido por ano.
 <br/>
 
 ## 📡 Tecnologias utilizadas 
