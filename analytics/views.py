@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import JurosTable, TableFutureFees, InsertValuesAporte
 from horus.models import ValueMonthTotal
+from django.contrib.auth.decorators import login_required
 
 list_month = ['Janeiro', 'Fevereiro']
 
-
+@login_required(login_url='user-login')
 def future_values(request):
     if request.method == 'POST':
         value_start = float(request.POST.get('value_start').replace(",", "."))
@@ -33,6 +34,7 @@ def future_values(request):
 
     return render(request, 'analytics/analise_copy.html')
 
+@login_required(login_url='user-login')
 def analise(request):
     data = JurosTable.objects.all()
     lista_initial = []
@@ -89,7 +91,7 @@ def analise(request):
 
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal, 'data_aportes':data_aportes})
 
-
+@login_required(login_url='user-login')
 def delete_table(request):
     if request.method == "GET":
         JurosTable.objects.all().delete()

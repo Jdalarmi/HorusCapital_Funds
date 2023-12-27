@@ -77,6 +77,7 @@ def logout_user(request):
 
     return redirect('user-login')
 
+
 def delete_chartjs(request):
     ValueMonthTotal.objects.all().delete()
     return render(request, 'horus/values.html')
