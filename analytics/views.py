@@ -64,6 +64,7 @@ def analise(request):
             )
     data_juros = TableFutureFees.objects.all()
     juros_mensal = ValueMonthTotal.objects.all()
+    data_aportes = InsertValuesAporte.objects.all()
 
     valor_patrimonio = _value_initial
     if request.method == 'POST':
@@ -72,18 +73,18 @@ def analise(request):
 
         ultimo_aporte_obj = InsertValuesAporte.objects.order_by('-patrimonio_total').first()
 
-    if ultimo_aporte_obj:
-        novo_aporte_obj = InsertValuesAporte.objects.create(
-            valor_patrimonio=ultimo_aporte_obj.valor_patrimonio + value_aporte,
-            juros_recebido=value_juros,
-            patrimonio_total=ultimo_aporte_obj.valor_patrimonio + value_aporte + value_juros
-        )
-    else:
-        novo_aporte_obj = InsertValuesAporte.objects.create(
-            valor_patrimonio=value_aporte,
-            juros_recebido=value_juros,
-            patrimonio_total=value_aporte + value_juros
-        )
-            
+        if ultimo_aporte_obj:
+            novo_aporte_obj = InsertValuesAporte.objects.create(
+                valor_patrimonio=ultimo_aporte_obj.valor_patrimonio + value_aporte,
+                juros_recebido=value_juros,
+                patrimonio_total=ultimo_aporte_obj.valor_patrimonio + value_aporte + value_juros
+            )
+        else:
+            novo_aporte_obj = InsertValuesAporte.objects.create(
+                valor_patrimonio= valor_patrimonio + value_aporte,
+                juros_recebido= value_juros,
+                patrimonio_total= valor_patrimonio + value_aporte + value_juros
+            )
+                
 
-    return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal})
+    return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal, 'data_aportes':data_aportes})
