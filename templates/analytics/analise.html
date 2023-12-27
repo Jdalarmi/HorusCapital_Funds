@@ -42,7 +42,7 @@
     </div>
     <br>
     <br>
-    <h1 style="text-align:center;font-family:Verdana">Tabela de investimento REAL</h1>
+    <h2>Tabela de investimento</h2>
     <div class="table-test">
         <table class="table-test">
           <thead>
@@ -64,7 +64,8 @@
           {% endfor %}
         </table>
       </div>
-      <h1 style="text-align:center;font-family:Verdana">Tabela de acompanhamento</h1>
+      <hr>
+      <h2>Tabela guia de investimento</h1>
       <div class="table-responsive">
           <table class="table table-bordered table-dark">
             <thead>
@@ -80,7 +81,6 @@
                       <td>R$:{{data.total_investido | floatformat}}</td>
                       <td>R$:{{data.juros | floatformat}}</td>
                       <td>R$:{{data.total_acumulado | floatformat}}</td>
-                      <td></td>
                     </tr>
               </tbody>
             {% endfor %}

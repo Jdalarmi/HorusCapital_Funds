@@ -1,36 +1,41 @@
-/* Estilos para a tabela */
 .table {
-    width: 100%;
-    margin-bottom: 1rem;
-    color: #ffffff;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-  
-  .table thead th {
-    background-color: #1b8518;
-    border: 1px solid #1b8518;
-    text-align: center;
-  }
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-family: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+  border-collapse: collapse;
+}
 
-  .table tbody tr:nth-child(even) {
-    background-color: #358ada; 
+.table thead th {
+  background-color: #3498db;
+  color: #ffffff;
+  border: 1px solid #2980b9;
+  padding: 10px;
+  text-align: center;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #ecf0f1;
 }
 
 .table tbody tr:nth-child(odd) {
-    background-color: #358ada; 
+  background-color: #d4e6f1;
 }
-  
-  .table tbody tr {
-    background-color: #3082d4;
-  }
-  
-  .table tbody td {
-    text-align: center;
-  }
-  
-  .table tbody tr:hover {
-    background-color: #2fd13c;
-  }
+
+.table tbody tr {
+  background-color: #bdc3c7;
+}
+
+.table tbody td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+}
+
+.table tbody tr:hover {
+  background-color: #3498db;
+  color: #ffffff;
+}
   
   /* Estilos para os campos de entrada */
   .form-control {
@@ -90,40 +95,45 @@
     color: #fff;
   }
   
-/* Tabela de inpuits */
 
 /* Estilos para a tabela-teste */
 .table-test {
   width: 100%;
   margin-bottom: 1rem;
-  color: #ffffff;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #2c3e50;
+  font-family: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+  border-collapse: collapse;
 }
 
 .table-test thead th {
-  background-color: #0ec43c;
-  border: 1px solid #0a8f41;
+  background-color: #3498db;
+  color: #ffffff;
+  border: 1px solid #2980b9;
+  padding: 10px;
   text-align: center;
 }
 
 .table-test tbody tr:nth-child(even) {
-  background-color: #3a86d1; 
+  background-color: #ecf0f1;
 }
 
 .table-test tbody tr:nth-child(odd) {
-  background-color: #358ada; 
+  background-color: #d4e6f1;
 }
 
 .table-test tbody tr {
-  background-color: #3082d4;
+  background-color: #bdc3c7;
 }
 
 .table-test tbody td {
   text-align: center;
+  padding: 8px;
+  border: 1px solid #bdc3c7;
 }
 
 .table-test tbody tr:hover {
-  background-color: #2fd13c;
+  background-color: #35c419;
+  color: #ffffff;
 }
 
 
@@ -178,4 +188,12 @@
 .button-test:hover {
   background-color: #3498db;
   color: #fff;
+}
+h2 {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }

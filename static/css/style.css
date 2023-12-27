@@ -50,6 +50,29 @@ a{
   width: 280px;
   padding: 10px;
 }
+.contador{
+            text-align: center;
+            font-size: 28px;
+            color: #050505;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+}
+.contador i {
+  font-size: 1.2em;
+}
+@keyframes swing {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.contador.animated {
+  animation: swing 2s infinite;
+}
+
 nav .fas{
   position: relative;
   width: 70px;

@@ -17,9 +17,11 @@
           <div class="btn-toolbar mb-2 mb-md-0">
         </div>
         <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
-        <a style="font-family:Verdana; font-size:10px" href="{% url "delete-chart" %}"> Limpar rendimentos</a>
-        <h2 style="text-align:center;font-family:Verdana">Total de rendimentos recebidos</h2>
-        <h2 style="text-align:center">R$ {{total}}</h2>
+        <a style="font-family:Verdana; font-size:12px" href="{% url "delete-chart" %}"> Limpar rendimentos</a>
+        <h2 class="contador animated">
+          <i>Rendimentos Totais</i>
+          <i class="fas fa-dollar-sign"></i>{{total}}
+        </h2>
         <img src="{{ chart_data }}" alt="Gráfico de Pizza"width="500" height="400">
         <hr>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
