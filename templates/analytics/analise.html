@@ -42,9 +42,9 @@
     </div>
     <br>
     <br>
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-dark">
+    <h1 style="text-align:center;font-family:Verdana">Tabela de investimento REAL</h1>
+    <div class="table-test">
+        <table class="table-test">
           <thead>
             <tr>
               <th>Patrimonio</th>
@@ -52,21 +52,24 @@
               <th>Total Acumulado</th>
             </tr>
           </thead>
+          {% for data in data_aportes  %}
             <tbody>
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{data.valor_patrimonio | floatformat}}</td>
+                    <td>{{data.juros_recebido | floatformat}}</td>
+                    <td>{{data.patrimonio_total | floatformat}}</td>
+                   
                   </tr>
             </tbody>
+          {% endfor %}
         </table>
       </div>
+      <h1 style="text-align:center;font-family:Verdana">Tabela de acompanhamento</h1>
       <div class="table-responsive">
           <table class="table table-bordered table-dark">
             <thead>
               <tr>
-                <th>Total investido</th>
+                <th>Patrimonio |</th>
                 <th>Juros</th>
                 <th>Total Acumulado</th>
               </tr>
