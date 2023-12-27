@@ -6,8 +6,8 @@ from matplotlib import pyplot as plt
 
 def generate_bar(categories, values):
     fig, ax = plt.subplots()
-    bar_labels = ['blue','blue','blue']
-    bar_colors = ['tab:blue', 'tab:blue', 'tab:blue']
+    bar_labels = ['blue'] * len(categories)
+    bar_colors = ['tab:blue'] * len(categories)
 
     bars = ax.bar(categories, values, label=bar_labels, color=bar_colors)
 
@@ -24,3 +24,4 @@ def generate_bar(categories, values):
 
     image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
     return f'data:image/png;base64,{image_base64}'
+

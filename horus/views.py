@@ -12,6 +12,11 @@ def home(request):
     range_month = ValueMonthTotal.objects.all()
     range_year = ValueYearTotal.objects.all()
 
+    total = 0
+
+    for i in range_year:
+        total += i.total
+
     categories = [obj.year for obj in range_year]
     values = [obj.total for obj in range_year]
 
@@ -20,7 +25,8 @@ def home(request):
     context ={
         "range_month":range_month,
         "range_year":range_year,
-        "chart_data":chart_data
+        "chart_data":chart_data,
+        "total":total
     }
     
     return render(request, 'horus/home.html', context)
@@ -70,3 +76,7 @@ def logout_user(request):
     auth.logout(request)
 
     return redirect('user-login')
+
+def delete_chartjs(request):
+    ValueMonthTotal.objects.all().delete()
+    return render(request, 'horus/values.html')
