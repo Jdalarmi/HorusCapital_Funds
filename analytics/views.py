@@ -16,7 +16,7 @@ def future_values(request):
             value_start = value_start,
             value_month = value_by,
             value_rentability = value_format
-        ).first
+        ).first()
 
         if existing_entry:
             existing_entry.value_start = value_start
@@ -88,3 +88,11 @@ def analise(request):
                 
 
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal, 'data_aportes':data_aportes})
+
+
+def delete_table(request):
+    if request.method == "GET":
+        JurosTable.objects.all().delete()
+        TableFutureFees.objects.all().delete()
+        InsertValuesAporte.objects.all().delete()
+    return render(request, 'analytics/analise.html')

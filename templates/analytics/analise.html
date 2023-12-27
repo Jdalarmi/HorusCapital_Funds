@@ -55,9 +55,9 @@
           {% for data in data_aportes  %}
             <tbody>
                   <tr>
-                    <td>{{data.valor_patrimonio | floatformat}}</td>
-                    <td>{{data.juros_recebido | floatformat}}</td>
-                    <td>{{data.patrimonio_total | floatformat}}</td>
+                    <td>R$:{{data.valor_patrimonio | floatformat}}</td>
+                    <td>R$:{{data.juros_recebido | floatformat}}</td>
+                    <td>R$:{{data.patrimonio_total | floatformat}}</td>
                    
                   </tr>
             </tbody>
@@ -85,5 +85,6 @@
               </tbody>
             {% endfor %}
           </table>
+          <a style="font-family:Verdana; font-size:20px" href="{% url "delete-all" %}"> Limpar tabela</a>
         </div>
 {% endblock %}
