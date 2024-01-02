@@ -3,8 +3,6 @@ from .models import JurosTable, TableFutureFees, InsertValuesAporte
 from horus.models import ValueMonthTotal
 from django.contrib.auth.decorators import login_required
 
-list_month = ['Janeiro', 'Fevereiro']
-
 @login_required(login_url='user-login')
 def future_values(request):
     if request.method == 'POST':
