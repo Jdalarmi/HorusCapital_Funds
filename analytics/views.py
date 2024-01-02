@@ -56,10 +56,11 @@ def analise(request):
             juros =total_investido * (rentabilidade / 100)
             total_juros += juros
             total_acumulado = total_investido + total_juros
+            juros_test = total_acumulado * (rentabilidade / 100)
 
             TableFutureFees.objects.get_or_create(
                 total_investido = total_investido,
-                juros = juros,
+                juros = juros_test,
                 total_acumulado= total_acumulado
             )
     data_juros = TableFutureFees.objects.all()
