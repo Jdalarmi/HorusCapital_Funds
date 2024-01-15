@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+class FundsHorus(models.Model):
+    fund = models.CharField(max_length=15)

@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
+
 @login_required(login_url='user-login')
 def home(request):
     range_month = ValueMonthTotal.objects.all()
@@ -21,14 +22,14 @@ def home(request):
     values = [obj.total for obj in range_year]
 
     chart_data = generate_bar(categories, values)
-   
+
     context ={
         "range_month":range_month,
         "range_year":range_year,
         "chart_data":chart_data,
         "total":total
     }
-    
+
     return render(request, 'horus/home.html', context)
 
 @login_required(login_url='user-login')

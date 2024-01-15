@@ -31,7 +31,7 @@
         var ctx = document.getElementById("myChart").getContext('2d');
         
         // Gere dados de exemplo (substitua isso pelos seus dados reais)
-        var range_days = Array.from({ length: 30 }, (_, i) => i + 1);
+        var range_days = Array.from({ length: 19 }, (_, i) => i + 1);
     
         var range_items = [];
         for (var i = 1; i <= 2; i++) {
@@ -106,7 +106,7 @@
             <button class="button" type="submit">Cadastrar</button>
         </form>
     </div>
-
+    <h1>{{data}}</h1>
 {% endblock %}
 
 
