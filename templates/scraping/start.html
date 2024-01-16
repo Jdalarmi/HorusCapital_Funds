@@ -29,59 +29,48 @@
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
       <script>
         var ctx = document.getElementById("myChart").getContext('2d');
-
+    
         // Substitua esta lista pelos seus valores reais
         var seusValores = {{fund_value | safe | default:"[]"}};
-
+    
         var range_days = Array.from({ length: seusValores.length }, (_, i) => i + 1);
-
+    
         var range_items = [{
-          name: '{{fund_name}}',
-          values: seusValores,
-          color: getRandomColor()
+            name: '{{fund_name}}',
+            values: seusValores,
+            color: '#0221ad' 
         }];
-
-        function getRandomColor() {
-          var letters = '0123456789ABCDEF';
-          var color = '#';
-          for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-          }
-          return color;
-        }
-
+    
         var myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: range_days,
-            datasets: range_items.map(function (item) {
-              return {
-                label: item.name,
-                data: item.values,
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: item.color,
-                borderWidth: 4,
-                pointBackgroundColor: item.color
-              };
-            })
-          },
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: false
-                }
-              }]
+            type: 'line',
+            data: {
+                labels: range_days,
+                datasets: range_items.map(function (item) {
+                    return {
+                        label: item.name,
+                        data: item.values,
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: item.color,
+                        borderWidth: 4,
+                        pointBackgroundColor: item.color
+                    };
+                })
             },
-            legend: {
-              display: true,
-            }
-          },
-
-
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                },
+                legend: {
+                    display: true,
+                }
+            },
         });
-      </script>
+    </script>
       </main>
       <br>
       <div class="container_values">
@@ -94,8 +83,6 @@
                 {% endfor %}
             </ul>
             {% endif %}
-            <br>
-            <br>
             <div class="form-row">
                 <br>
                 <div class="col-md-4 mb-3">
