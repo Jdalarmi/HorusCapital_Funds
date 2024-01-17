@@ -10,7 +10,6 @@ def start(request):
             fund_value = colect_fund(fund_name)
             context = {
                 'fund_value':fund_value,
-                'fund_name':fund_name
             }
             return render(request, 'scraping/start.html', context)
         else:
