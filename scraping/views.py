@@ -10,7 +10,9 @@ def start(request):
     data = FundsHorus.objects.filter(user=user)
     if request.method == 'POST':
         fund_name = request.POST.get('fundo')
-
+        if fund_name == '':
+            messages.error(request,'Insira nome do fundo por favor!')
+            return redirect('start-fiis')
         if fund_name:
             fund_value = colect_fund(fund_name)
             context = {
