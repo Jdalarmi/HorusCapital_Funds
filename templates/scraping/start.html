@@ -29,18 +29,18 @@
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
       <script>
         var ctx = document.getElementById("myChart").getContext('2d');
-    
+
         // Substitua esta lista pelos seus valores reais
         var seusValores = {{fund_value | safe | default:"[]"}};
-    
+
         var range_days = Array.from({ length: seusValores.length }, (_, i) => i + 1);
-    
+
         var range_items = [{
             name: '{{fund_name}}',
             values: seusValores,
-            color: '#0221ad' 
+            color: '#0221ad'
         }];
-    
+
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -91,8 +91,28 @@
                 </div>
             </div>
             <button class="button" type="submit">Gerar Perfomance</button>
+            <button class="button" type="submit">Gerar Perfomance</button>
         </form>
-    </div>
+        </div>
+        <div class="table-box">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Fundo imobiliario</th>
+                  <br>
+                  <th scope="col">Preço Médio</th>
+                  <th scope="col">Preço Atual(B3)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dado 1</td>
+                  <td>Dado 2</td>
+                  <td>Dado 3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 {% endblock %}
 
 
