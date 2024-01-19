@@ -5,16 +5,18 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='user-login')
 def future_values(request):
+    user = request.user
     if request.method == 'POST':
         value_start = float(request.POST.get('value_start').replace(",", "."))
         value_by = float(request.POST.get('value_by').replace(",", "."))
         value_rentability = float(request.POST.get('value_rentability').replace(",", "."))
-        value_format ="{:.2f}".format(value_rentability)
+        value_format = "{:.2f}".format(value_rentability)
 
         existing_entry = JurosTable.objects.filter(
-            value_start = value_start,
-            value_month = value_by,
-            value_rentability = value_format
+            user=user,
+            value_start=value_start,
+            value_month=value_by,
+            value_rentability=value_format
         ).first()
 
         if existing_entry:
@@ -25,16 +27,19 @@ def future_values(request):
 
         else:   
             JurosTable.objects.create(
-                value_start = value_start,
-                value_month = value_by,
-                value_rentability = value_format
-        )
+                user=user,
+                value_start=value_start,
+                value_month=value_by,
+                value_rentability=value_format
+            )
+        return redirect('analise')
 
     return render(request, 'analytics/analise_copy.html')
 
 @login_required(login_url='user-login')
 def analise(request):
-    data = JurosTable.objects.all()
+    user = request.user
+    data = JurosTable.objects.filter(user=user)
     lista_initial = []
     for value in data:
         _value_initial = value.value_start
@@ -59,6 +64,7 @@ def analise(request):
             juros_test = total_acumulado * (rentabilidade / 100)
 
             TableFutureFees.objects.get_or_create(
+                user = user,
                 total_investido = total_investido,
                 juros = juros_test,
                 total_acumulado= total_acumulado
@@ -92,8 +98,9 @@ def analise(request):
 
 @login_required(login_url='user-login')
 def delete_table(request):
+    user = request.user
     if request.method == "GET":
-        JurosTable.objects.all().delete()
-        TableFutureFees.objects.all().delete()
-        InsertValuesAporte.objects.all().delete()
+        JurosTable.objects.filter(user=user).delete()
+        TableFutureFees.objects.filter(user=user).delete()
+        InsertValuesAporte.objects.filter(user=user).delete()
     return render(request, 'analytics/analise.html')
