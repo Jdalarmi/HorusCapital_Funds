@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('horus.urls')),
     path('analytics/',include('analytics.urls')),
-    path('scraping/', include('scraping.urls'))
+    path('scraping/', include('scraping.urls')),
+    path('user/', include('user.urls'))
 ]

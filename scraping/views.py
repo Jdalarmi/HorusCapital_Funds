@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from .models import FundsHorus
 from .spider_fii import colect_fund
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='user-login')
 def start(request):
-    data = FundsHorus.objects.all()
+    user = request.user
+    data = FundsHorus.objects.filter(user=user)
     if request.method == 'POST':
         fund_name = request.POST.get('fundo')
 
@@ -21,11 +24,14 @@ def start(request):
     }
     return render(request, 'scraping/start.html', context)
 
+@login_required(login_url='user-login')
 def get_fund(request):
     if request.method == 'POST':
+        user = request.user
         name_fund = request.POST.get('fundo')
         value_fund = request.POST.get('value')
         FundsHorus.objects.get_or_create(
+            user = user,
             fund = name_fund,
             value = value_fund
         )

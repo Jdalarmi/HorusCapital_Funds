@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'horus',
     'analytics',
-    'scraping'
+    'scraping',
+    'user'
 ]
 
 MIDDLEWARE = [
