@@ -1,0 +1,30 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static "css/value.css" %}">
+    <div class="container_values">
+    <form method="post" action="">
+    {% csrf_token %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+        <div class="form-row">
+            <br>
+            <div class="col-md-4 mb-3">
+                <label for="value">Nome Do Ativo</label>
+                <input type="text" class="form-control" id="value" name="fundo">
+                <label for="value">Preço Médio</label>
+                <input type="text" class="form-control" id="value" name="value">
+            </div>
+        </div>
+        <button class="button" type="submit">Cadastrar</button>
+    </form>
+{% endblock %}
+
+
+
+
