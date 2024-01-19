@@ -7,10 +7,12 @@ from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
+
 @login_required(login_url='user-login')
 def home(request):
-    range_month = ValueMonthTotal.objects.all()
-    range_year = ValueYearTotal.objects.all()
+    user = request.user
+    range_month = ValueMonthTotal.objects.filter(user=user)
+    range_year = ValueYearTotal.objects.filter(user=user)
 
     total = 0
 
@@ -21,19 +23,20 @@ def home(request):
     values = [obj.total for obj in range_year]
 
     chart_data = generate_bar(categories, values)
-   
+
     context ={
-        "range_month":range_month,
-        "range_year":range_year,
-        "chart_data":chart_data,
-        "total":total
+        "range_month": range_month,
+        "range_year": range_year,
+        "chart_data": chart_data,
+        "total": total
     }
-    
+
     return render(request, 'horus/home.html', context)
 
 @login_required(login_url='user-login')
 def insert_value(request):
     if request.method == 'POST':
+        user = request.user
         data = request.POST.get("date")
         value = float(request.POST.get('value').replace(",", "."))
 
@@ -42,13 +45,15 @@ def insert_value(request):
         year_name = data_obj.strftime('%Y')
 
         ValueMonthTotal.objects.create(
-            month= month_name,
-            value = value
+            user=user,
+            month=month_name,
+            value=value
         )
 
         data_year, created = ValueYearTotal.objects.get_or_create(
-            year = year_name,
-            defaults={'total':value}
+            user=user,
+            year=year_name,
+            defaults={'total': value}
         )
         if not created:
             data_year.total += value
@@ -77,6 +82,8 @@ def logout_user(request):
 
     return redirect('user-login')
 
+@login_required(login_url='user-login')
 def delete_chartjs(request):
-    ValueMonthTotal.objects.all().delete()
+    user = request.user
+    ValueMonthTotal.objects.filter(user=user).delete()
     return render(request, 'horus/values.html')
