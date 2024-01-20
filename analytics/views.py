@@ -69,9 +69,9 @@ def analise(request):
                 juros = juros_test,
                 total_acumulado= total_acumulado
             )
-    data_juros = TableFutureFees.objects.all()
-    juros_mensal = ValueMonthTotal.objects.all()
-    data_aportes = InsertValuesAporte.objects.all()
+    data_juros = TableFutureFees.objects.filter(user=user)
+    juros_mensal = ValueMonthTotal.objects.filter(user=user)
+    data_aportes = InsertValuesAporte.objects.filter(user=user)
 
     valor_patrimonio = _value_initial
     if request.method == 'POST':
@@ -88,6 +88,7 @@ def analise(request):
             )
         else:
             novo_aporte_obj = InsertValuesAporte.objects.create(
+                user=user,
                 valor_patrimonio= valor_patrimonio + value_aporte,
                 juros_recebido= value_juros,
                 patrimonio_total= valor_patrimonio + value_aporte + value_juros
