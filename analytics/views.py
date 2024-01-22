@@ -25,7 +25,7 @@ def future_values(request):
             existing_entry.value_rentability = value_format
             existing_entry.save()
 
-        else:   
+        else:
             JurosTable.objects.create(
                 user=user,
                 value_start=value_start,
@@ -82,6 +82,7 @@ def analise(request):
 
         if ultimo_aporte_obj:
             novo_aporte_obj = InsertValuesAporte.objects.create(
+                user=user,
                 valor_patrimonio=ultimo_aporte_obj.valor_patrimonio + value_aporte,
                 juros_recebido=value_juros,
                 patrimonio_total=ultimo_aporte_obj.valor_patrimonio + value_aporte + value_juros
@@ -93,7 +94,7 @@ def analise(request):
                 juros_recebido= value_juros,
                 patrimonio_total= valor_patrimonio + value_aporte + value_juros
             )
-                
+
 
     return render(request, 'analytics/analise.html', {"data":data, "data_juros":data_juros, "juros_mensal":juros_mensal, 'data_aportes':data_aportes})
 
