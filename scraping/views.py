@@ -21,8 +21,17 @@ def start(request):
             return render(request, 'scraping/start.html', context)
         else:
             return redirect(request, 'start-fiis')
+    else:
+        last_name = FundsHorus.objects.all()
+        for name in last_name:
+            fund_name = name.fund
+
+            fund = colect_fund(fund_name)
+        number_fund = fund[-1]
+        print(number_fund)
     context = {
-        'data': data
+        'data': data,
+        'number_fund':number_fund
     }
     return render(request, 'scraping/start.html', context)
 
@@ -39,5 +48,4 @@ def get_fund(request):
         )
         messages.success(request, 'Fundo cadastrado com Sucesso!')
         return redirect('start-fiis')
-        
     return render(request, 'scraping/new_fund.html')
